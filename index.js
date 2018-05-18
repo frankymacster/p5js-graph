@@ -1,6 +1,6 @@
 const NODE_RADIUS = 30;
 
-const main = () => {
+const setTimeoutHandler = () => {
   const case1_nodes = [{
     text: 'n1',
     radius: NODE_RADIUS,
@@ -205,4 +205,74 @@ const main = () => {
       y: 50,
     }],
   }, '*');
+};
+
+const printHave = () => {
+  var haveEl = document.getElementById('have');
+
+  var have1 = new Tree('graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors');
+
+  have1.add('graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; G.edges.(&ni; n) &ni; e <br />&nbsp; &nbsp; &nbsp; n.neighbors = n.neighbors &cup; {e \ n}',
+    'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors', have1.traverseBF);
+
+  haveEl.appendChild(printTree(have1));
+
+  var have2 = new Tree('graphs.regular.k &ni; G');
+
+  have2.add('graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors.# = k',
+    'graphs.regular.k &ni; G', have2.traverseBF);
+
+  haveEl.appendChild(printTree(have2));
+
+  var have3 = new Tree('G.edges &ni; e<br />&nbsp; graphs.&not;connected &ni; G - {e}');
+
+  have3.add('e.nodes &ni; n<br />&nbsp; graphs.&not;connected &ni; G - {n}',
+    'G.edges &ni; e<br />&nbsp; graphs.&not;connected &ni; G - {e}', have3.traverseBF);
+
+  haveEl.appendChild(printTree(have3));
+
+  var have4 = new Tree('G.nodes &supe; S<br />&nbsp; graphs.&not;connected &ni; G - S');
+
+  have4.add('&nbsp; &nbsp; (G - S).components.# &gt; 1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H2<br />&nbsp; &nbsp; &nbsp; &and;',
+    'G.nodes &supe; S<br />&nbsp; graphs.&not;connected &ni; G - S', have4.traverseBF);
+
+  haveEl.appendChild(printTree(have4));
+};
+
+const printWant = () => {
+  var wantEl = document.getElementById('want');
+
+  var want = new Tree('graphs.regular.3 &ni; G<br />&nbsp; ...<br />&nbsp; &nbsp; G.connectivity.node = G.connectivity.edge');
+
+  want.add('G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3',
+    'graphs.regular.3 &ni; G<br />&nbsp; ...<br />&nbsp; &nbsp; G.connectivity.node = G.connectivity.edge', want.traverseBF);
+
+  want.add('H1 &ni; n3',
+    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
+  want.add('H2 &ni; n3',
+    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
+  want.add('H3 &ni; n3',
+    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
+  want.add('S &ni; n3',
+    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
+  want.add('&or;<br /><p>&nbsp; S\'.# = S.#<br />&nbsp; &nbsp; &nbsp; G.connectivity.node = G.connectivity.edge',
+    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
+
+  want.add('<iframe id="case1" src="./drawing/index.html"></iframe><br />&nbsp; graphs.&not;connected &ni; G - {{n, n2}}',
+    'H1 &ni; n3', want.traverseBF);
+  want.add('<iframe id="case2" src="./drawing/index.html"></iframe><br />&nbsp; graphs.&not;connected &ni; G - {{n, n1}}',
+    'H2 &ni; n3', want.traverseBF);
+  want.add('<iframe id="case3" src="./drawing/index.html"></iframe><br /><p>&nbsp; graphs.&not;connected &ni; G - {{n, n1}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n2}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n3}}<br />&nbsp; &or;',
+    'H3 &ni; n3', want.traverseBF);
+  want.add('&nbsp; n3.neighbors &ni; n31<br />&nbsp; &nbsp; H1 &ni; n31<br />&nbsp; &nbsp; &nbsp; n3.neighbors &ni; n32<br />&nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n32<br /><iframe id="case4" src="./drawing/index.html"></iframe><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n1}, {n3, n31}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n2}, {n3, n32}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &or;',
+    'S &ni; n3', want.traverseBF);
+
+  wantEl.appendChild(printTree(want));
+
+  setTimeout(setTimeoutHandler, 1000);
+};
+
+const main = () => {
+  printHave();
+  printWant();
 };

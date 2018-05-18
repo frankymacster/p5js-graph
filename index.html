@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
+    <script src="./queue.js"></script>
+    <script src="./tree.js"></script>
+    <script src="./create-card-container-el.js"></script>
+    <script src="./tree-view.js"></script>
     <script src="./index.js"></script>
   </head>
   <body onload="main()">
@@ -13,167 +17,12 @@
     		<div class="col-md-12">
           <div class="jumbotron card card-block">
             have
-
-            <div id="card-403910">
-              <div class="card">
-                <div class="card-header">
-                   <a class="card-link" data-toggle="collapse" data-parent="#card-403910" href="#card-element-274835">
-                     <p>graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors</p>
-                   </a>
-                </div>
-                <div id="card-element-274835" class="collapse">
-                  <div class="card-body">
-                    <p>graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; G.edges.(&ni; n) &ni; e <br />&nbsp; &nbsp; &nbsp; n.neighbors = n.neighbors &cup; {e \ n}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="card-403911">
-              <div class="card">
-                <div class="card-header">
-                   <a class="card-link" data-toggle="collapse" data-parent="#card-403911" href="#card-element-274836">
-                     <p>graphs.regular.k &ni; G</p>
-                   </a>
-                </div>
-                <div id="card-element-274836" class="collapse">
-                  <div class="card-body">
-                    <p>graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors.# = k</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="card-403914">
-              <div class="card">
-                <div class="card-header">
-                   <a class="card-link" data-toggle="collapse" data-parent="#card-403914" href="#card-element-274839">
-                     <p>G.edges &ni; e<br />&nbsp; graphs.&not;connected &ni; G - {e}</p>
-                   </a>
-                </div>
-                <div id="card-element-274839" class="collapse">
-                  <div class="card-body">
-                    <p>e.nodes &ni; n<br />&nbsp; graphs.&not;connected &ni; G - {n}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="card-403915">
-              <div class="card">
-                <div class="card-header">
-                   <a class="card-link" data-toggle="collapse" data-parent="#card-403915" href="#card-element-274840">
-                     <p>G.nodes &supe; S<br />&nbsp; graphs.&not;connected &ni; G - S</p>
-                   </a>
-                </div>
-                <div id="card-element-274840" class="collapse">
-                  <div class="card-body">
-                    <p>&nbsp; &nbsp; (G - S).components.# &gt; 1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H2<br />&nbsp; &nbsp; &nbsp; &and;</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            <div id="have"></div>
           </div>
 
           <div class="jumbotron card card-block">
             want
-            <div id="card-403912">
-              <div class="card">
-                <div class="card-header">
-                   <a class="card-link" data-toggle="collapse" data-parent="#card-403912" href="#card-element-274837">
-                     <p>graphs.regular.3 &ni; G<br />&nbsp; ...<br />&nbsp; &nbsp; G.connectivity.node = G.connectivity.edge</p>
-                   </a>
-                </div>
-                <div id="card-element-274837" class="collapse">
-                  <div class="card-body">
-                    <div id="card-403913">
-                      <div class="card">
-                        <div class="card-header">
-                           <a class="card-link" data-toggle="collapse" data-parent="#card-403913" href="#card-element-274838">
-                             <p>G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3</p>
-                           </a>
-                        </div>
-                        <div id="card-element-274838" class="collapse">
-                          <div class="card-body">
-
-                            <div id="card-403917">
-                              <div class="card">
-                                <div class="card-header">
-                                   <a class="card-link" data-toggle="collapse" data-parent="#card-403917" href="#card-element-274841">
-                                     <p>H1 &ni; n3</p>
-                                   </a>
-                                </div>
-                                <div id="card-element-274841" class="collapse">
-                                  <div class="card-body">
-                                    <iframe id="case1" src="./drawing/index.html"></iframe>
-                                    <p>&nbsp; graphs.&not;connected &ni; G - {{n, n2}}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div id="card-403918">
-                              <div class="card">
-                                <div class="card-header">
-                                   <a class="card-link" data-toggle="collapse" data-parent="#card-403918" href="#card-element-274842">
-                                     <p>H2 &ni; n3</p>
-                                   </a>
-                                </div>
-                                <div id="card-element-274842" class="collapse">
-                                  <div class="card-body">
-                                    <iframe id="case2" src="./drawing/index.html"></iframe>
-                                    <p>&nbsp; graphs.&not;connected &ni; G - {{n, n1}}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div id="card-403919">
-                              <div class="card">
-                                <div class="card-header">
-                                   <a class="card-link" data-toggle="collapse" data-parent="#card-403919" href="#card-element-274843">
-                                     <p>H3 &ni; n3</p>
-                                   </a>
-                                </div>
-                                <div id="card-element-274843" class="collapse">
-                                  <div class="card-body">
-                                    <iframe id="case3" src="./drawing/index.html"></iframe>
-                                    <p>&nbsp; graphs.&not;connected &ni; G - {{n, n1}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n2}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n3}}<br />&nbsp; &or;</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div id="card-403920">
-                              <div class="card">
-                                <div class="card-header">
-                                   <a class="card-link" data-toggle="collapse" data-parent="#card-403920" href="#card-element-274844">
-                                     <p>S &ni; n3</p>
-                                   </a>
-                                </div>
-                                <div id="card-element-274844" class="collapse">
-                                  <div class="card-body">
-                                    <p>&nbsp; n3.neighbors &ni; n31<br />&nbsp; &nbsp; H1 &ni; n31<br />&nbsp; &nbsp; &nbsp; n3.neighbors &ni; n32<br />&nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n32</p>
-                                    <iframe id="case4" src="./drawing/index.html"></iframe>
-                                    <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n1}, {n3, n31}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n2}, {n3, n32}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &or;</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            &or;
-                            <p>&nbsp; S'.# = S.#<br />&nbsp; &nbsp; &nbsp; G.connectivity.node = G.connectivity.edge</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            <div id="want"></div>
           </div>
 
     		</div>
