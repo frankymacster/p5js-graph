@@ -1,7 +1,53 @@
 const NODE_RADIUS = 30;
 
-const setTimeoutHandler = () => {
-  const case1_nodes = [{
+const printHave = () => {
+  var haveEl = document.getElementById('have');
+
+  const def1 = {
+    text: 'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors',
+  };
+  const def11 = {
+    text: 'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; G.edges.(&ni; n) &ni; e <br />&nbsp; &nbsp; &nbsp; n.neighbors = n.neighbors &cup; {e \ n}',
+  };
+  var have1 = new Tree(def1);
+  have1.add(def11, def1, have1.traverseBF);
+  haveEl.appendChild(printTree(have1));
+
+  const def2 = {
+    text: 'graphs.regular.k &ni; G',
+  };
+  const def21 = {
+    text: 'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors.# = k',
+  };
+  var have2 = new Tree(def2);
+  have2.add(def21, def2, have2.traverseBF);
+  haveEl.appendChild(printTree(have2));
+
+  const def3 = {
+    text: 'G.edges &ni; e<br />&nbsp; graphs.&not;connected &ni; G - {e}',
+  };
+  const def31 = {
+    text: 'e.nodes &ni; n<br />&nbsp; graphs.&not;connected &ni; G - {n}',
+  };
+  var have3 = new Tree(def3);
+  have3.add(def31, def3, have3.traverseBF);
+  haveEl.appendChild(printTree(have3));
+
+  const def4 = {
+    text: 'G.nodes &supe; S<br />&nbsp; graphs.&not;connected &ni; G - S',
+  };
+  const def41 = {
+    text: '&nbsp; &nbsp; (G - S).components.# &gt; 1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H2<br />&nbsp; &nbsp; &nbsp; &and;',
+  };
+  var have4 = new Tree(def4);
+  have4.add(def41, def4, have4.traverseBF);
+  haveEl.appendChild(printTree(have4));
+};
+
+const printWant = () => {
+  var wantEl = document.getElementById('want');
+
+  const proof31Nodes = [{
     text: 'n1',
     radius: NODE_RADIUS,
     x: 50,
@@ -23,32 +69,7 @@ const setTimeoutHandler = () => {
     y: 50,
   }];
 
-  document.getElementById('case1').contentWindow.postMessage({
-    nodes: case1_nodes,
-
-    edges: [
-      [case1_nodes[0], case1_nodes[2]],
-      [case1_nodes[1], case1_nodes[2]],
-      [case1_nodes[2], case1_nodes[3]],
-    ],
-
-    sets: [{
-      text: 'H1',
-      w: 3 * NODE_RADIUS,
-      h: 5 * NODE_RADIUS,
-      x: 50,
-      y: 50,
-    }, {
-      text: 'H2',
-      w: 3 * NODE_RADIUS,
-      h: 5 * NODE_RADIUS,
-      x: 250,
-      y: 50,
-    }],
-  }, '*');
-
-
-  const case2_nodes = [{
+  const proof32Nodes = [{
     text: 'n1',
     radius: NODE_RADIUS,
     x: 50,
@@ -70,32 +91,7 @@ const setTimeoutHandler = () => {
     y: 75,
   }];
 
-  document.getElementById('case2').contentWindow.postMessage({
-    nodes: case2_nodes,
-
-    edges: [
-      [case2_nodes[0], case2_nodes[1]],
-      [case2_nodes[1], case2_nodes[2]],
-      [case2_nodes[1], case2_nodes[3]],
-    ],
-
-    sets: [{
-      text: 'H1',
-      w: 3 * NODE_RADIUS,
-      h: 5 * NODE_RADIUS,
-      x: 50,
-      y: 50,
-    }, {
-      text: 'H2',
-      w: 3 * NODE_RADIUS,
-      h: 5 * NODE_RADIUS,
-      x: 250,
-      y: 50,
-    }],
-  }, '*');
-
-
-  const case3_nodes = [{
+  const proof33Nodes = [{
     text: 'n1',
     radius: NODE_RADIUS,
     x: 50,
@@ -117,38 +113,7 @@ const setTimeoutHandler = () => {
     y: 150,
   }];
 
-  document.getElementById('case3').contentWindow.postMessage({
-    nodes: case3_nodes,
-
-    edges: [
-      [case3_nodes[0], case3_nodes[1]],
-      [case3_nodes[1], case3_nodes[2]],
-      [case3_nodes[1], case3_nodes[3]],
-    ],
-
-    sets: [{
-      text: 'H1',
-      w: 3 * NODE_RADIUS,
-      h: 5 * NODE_RADIUS,
-      x: 50,
-      y: 50,
-    }, {
-      text: 'H2',
-      w: 3 * NODE_RADIUS,
-      h: 5 * NODE_RADIUS,
-      x: 250,
-      y: 50,
-    }, {
-      text: 'H3',
-      w: 3 * NODE_RADIUS,
-      h: 5 * NODE_RADIUS,
-      x: 150,
-      y: 200,
-    }],
-  }, '*');
-
-
-  const case4_nodes = [{
+  const proof34Nodes = [{
     text: 'n1',
     radius: NODE_RADIUS,
     x: 50,
@@ -180,96 +145,153 @@ const setTimeoutHandler = () => {
     y: 75,
   }];
 
-  document.getElementById('case4').contentWindow.postMessage({
-    nodes: case4_nodes,
+  const root = {
+    text: 'graphs.regular.3 &ni; G<br />&nbsp; ...<br />&nbsp; &nbsp; G.connectivity.node = G.connectivity.edge',
+  };
+  const proof1 = {
+    text: 'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3',
+  };
+  const proof21 = {
+    text: 'H1 &ni; n3',
+  };
+  const proof22 = {
+    text: 'H2 &ni; n3',
+  };
+  const proof23 = {
+    text: 'H3 &ni; n3',
+  };
+  const proof24 = {
+    text: 'S &ni; n3',
+  };
+  const proof25 = {
+    text: '&or;<br /><p>&nbsp; S\'.# = S.#<br />&nbsp; &nbsp; &nbsp; G.connectivity.node = G.connectivity.edge',
+  };
+  const proof31 = {
+    text: '&nbsp; graphs.&not;connected &ni; G - {{n, n2}}',
+    drawing: {
+      nodes: proof31Nodes,
 
-    edges: [
-      [case4_nodes[0], case4_nodes[1]],
-      [case4_nodes[1], case4_nodes[2]],
-      [case4_nodes[3], case4_nodes[4]],
-      [case4_nodes[4], case4_nodes[5]],
-      [case4_nodes[1], case4_nodes[4]],
-    ],
+      edges: [
+        [proof31Nodes[0], proof31Nodes[2]],
+        [proof31Nodes[1], proof31Nodes[2]],
+        [proof31Nodes[2], proof31Nodes[3]],
+      ],
 
-    sets: [{
-      text: 'H1',
-      w: 3 * NODE_RADIUS,
-      h: 5 * NODE_RADIUS,
-      x: 50,
-      y: 50,
-    }, {
-      text: 'H2',
-      w: 3 * NODE_RADIUS,
-      h: 5 * NODE_RADIUS,
-      x: 250,
-      y: 50,
-    }],
-  }, '*');
-};
+      sets: [{
+        text: 'H1',
+        w: 3 * NODE_RADIUS,
+        h: 5 * NODE_RADIUS,
+        x: 50,
+        y: 50,
+      }, {
+        text: 'H2',
+        w: 3 * NODE_RADIUS,
+        h: 5 * NODE_RADIUS,
+        x: 250,
+        y: 50,
+      }],
+    },
+  };
+  const proof32 = {
+    text: '&nbsp; graphs.&not;connected &ni; G - {{n, n1}}',
+    drawing: {
+      nodes: proof32Nodes,
 
-const printHave = () => {
-  var haveEl = document.getElementById('have');
+      edges: [
+        [proof32Nodes[0], proof32Nodes[1]],
+        [proof32Nodes[1], proof32Nodes[2]],
+        [proof32Nodes[1], proof32Nodes[3]],
+      ],
 
-  var have1 = new Tree('graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors');
+      sets: [{
+        text: 'H1',
+        w: 3 * NODE_RADIUS,
+        h: 5 * NODE_RADIUS,
+        x: 50,
+        y: 50,
+      }, {
+        text: 'H2',
+        w: 3 * NODE_RADIUS,
+        h: 5 * NODE_RADIUS,
+        x: 250,
+        y: 50,
+      }],
+    },
+  };
+  const proof33 = {
+    text: '&nbsp; graphs.&not;connected &ni; G - {{n, n1}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n2}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n3}}<br />&nbsp; &or;',
+    drawing: {
+      nodes: proof33Nodes,
 
-  have1.add('graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; G.edges.(&ni; n) &ni; e <br />&nbsp; &nbsp; &nbsp; n.neighbors = n.neighbors &cup; {e \ n}',
-    'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors', have1.traverseBF);
+      edges: [
+        [proof33Nodes[0], proof33Nodes[1]],
+        [proof33Nodes[1], proof33Nodes[2]],
+        [proof33Nodes[1], proof33Nodes[3]],
+      ],
 
-  haveEl.appendChild(printTree(have1));
+      sets: [{
+        text: 'H1',
+        w: 3 * NODE_RADIUS,
+        h: 5 * NODE_RADIUS,
+        x: 50,
+        y: 50,
+      }, {
+        text: 'H2',
+        w: 3 * NODE_RADIUS,
+        h: 5 * NODE_RADIUS,
+        x: 250,
+        y: 50,
+      }, {
+        text: 'H3',
+        w: 3 * NODE_RADIUS,
+        h: 5 * NODE_RADIUS,
+        x: 150,
+        y: 200,
+      }],
+    },
+  };
+  const proof34 = {
+    text: '&nbsp; n3.neighbors &ni; n31<br />&nbsp; &nbsp; H1 &ni; n31<br />&nbsp; &nbsp; &nbsp; n3.neighbors &ni; n32<br />&nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n32<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n1}, {n3, n31}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n2}, {n3, n32}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &or;',
+    drawing: {
+      nodes: proof34Nodes,
 
-  var have2 = new Tree('graphs.regular.k &ni; G');
+      edges: [
+        [proof34Nodes[0], proof34Nodes[1]],
+        [proof34Nodes[1], proof34Nodes[2]],
+        [proof34Nodes[3], proof34Nodes[4]],
+        [proof34Nodes[4], proof34Nodes[5]],
+        [proof34Nodes[1], proof34Nodes[4]],
+      ],
 
-  have2.add('graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors.# = k',
-    'graphs.regular.k &ni; G', have2.traverseBF);
-
-  haveEl.appendChild(printTree(have2));
-
-  var have3 = new Tree('G.edges &ni; e<br />&nbsp; graphs.&not;connected &ni; G - {e}');
-
-  have3.add('e.nodes &ni; n<br />&nbsp; graphs.&not;connected &ni; G - {n}',
-    'G.edges &ni; e<br />&nbsp; graphs.&not;connected &ni; G - {e}', have3.traverseBF);
-
-  haveEl.appendChild(printTree(have3));
-
-  var have4 = new Tree('G.nodes &supe; S<br />&nbsp; graphs.&not;connected &ni; G - S');
-
-  have4.add('&nbsp; &nbsp; (G - S).components.# &gt; 1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H2<br />&nbsp; &nbsp; &nbsp; &and;',
-    'G.nodes &supe; S<br />&nbsp; graphs.&not;connected &ni; G - S', have4.traverseBF);
-
-  haveEl.appendChild(printTree(have4));
-};
-
-const printWant = () => {
-  var wantEl = document.getElementById('want');
-
-  var want = new Tree('graphs.regular.3 &ni; G<br />&nbsp; ...<br />&nbsp; &nbsp; G.connectivity.node = G.connectivity.edge');
-
-  want.add('G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3',
-    'graphs.regular.3 &ni; G<br />&nbsp; ...<br />&nbsp; &nbsp; G.connectivity.node = G.connectivity.edge', want.traverseBF);
-
-  want.add('H1 &ni; n3',
-    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
-  want.add('H2 &ni; n3',
-    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
-  want.add('H3 &ni; n3',
-    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
-  want.add('S &ni; n3',
-    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
-  want.add('&or;<br /><p>&nbsp; S\'.# = S.#<br />&nbsp; &nbsp; &nbsp; G.connectivity.node = G.connectivity.edge',
-    'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3', want.traverseBF);
-
-  want.add('<iframe id="case1" src="./drawing/index.html"></iframe><br />&nbsp; graphs.&not;connected &ni; G - {{n, n2}}',
-    'H1 &ni; n3', want.traverseBF);
-  want.add('<iframe id="case2" src="./drawing/index.html"></iframe><br />&nbsp; graphs.&not;connected &ni; G - {{n, n1}}',
-    'H2 &ni; n3', want.traverseBF);
-  want.add('<iframe id="case3" src="./drawing/index.html"></iframe><br /><p>&nbsp; graphs.&not;connected &ni; G - {{n, n1}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n2}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n3}}<br />&nbsp; &or;',
-    'H3 &ni; n3', want.traverseBF);
-  want.add('&nbsp; n3.neighbors &ni; n31<br />&nbsp; &nbsp; H1 &ni; n31<br />&nbsp; &nbsp; &nbsp; n3.neighbors &ni; n32<br />&nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n32<br /><iframe id="case4" src="./drawing/index.html"></iframe><br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n1}, {n3, n31}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n2}, {n3, n32}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &or;',
-    'S &ni; n3', want.traverseBF);
-
-  wantEl.appendChild(printTree(want));
-
-  setTimeout(setTimeoutHandler, 1000);
+      sets: [{
+        text: 'H1',
+        w: 3 * NODE_RADIUS,
+        h: 5 * NODE_RADIUS,
+        x: 50,
+        y: 50,
+      }, {
+        text: 'H2',
+        w: 3 * NODE_RADIUS,
+        h: 5 * NODE_RADIUS,
+        x: 250,
+        y: 50,
+      }],
+    },
+  };
+  var want = new Tree(root);
+  want.add(proof1, root, want.traverseBF);
+  want.add(proof21, proof1, want.traverseBF);
+  want.add(proof22, proof1, want.traverseBF);
+  want.add(proof23, proof1, want.traverseBF);
+  want.add(proof24, proof1, want.traverseBF);
+  want.add(proof25, proof1, want.traverseBF);
+  want.add(proof31, proof21, want.traverseBF);
+  want.add(proof32, proof22, want.traverseBF);
+  want.add(proof33, proof23, want.traverseBF);
+  want.add(proof34, proof24, want.traverseBF);
+  wantEl.appendChild(printTree(want, message => {
+    document.getElementById('screen').contentWindow.postMessage(message, '*');
+  }));
 };
 
 const main = () => {
