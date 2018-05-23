@@ -1,52 +1,43 @@
 const NODE_RADIUS = 30;
 
 const printHave = () => {
-  var haveEl = document.getElementById('have');
-
-  const def1 = {
+  const def1 = [{
+    id: '0',
     text: 'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors',
-  };
-  const def11 = {
+  }, {
+    id: '01',
     text: 'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; G.edges.(&ni; n) &ni; e <br />&nbsp; &nbsp; &nbsp; n.neighbors = n.neighbors &cup; {e \ n}',
-  };
-  var have1 = new Tree(def1);
-  have1.add(def11, def1, have1.traverseBF);
-  haveEl.appendChild(printTree(have1));
-
-  const def2 = {
+  }];
+  const def2 = [{
+    id: '0',
     text: 'graphs.regular.k &ni; G',
-  };
-  const def21 = {
+  }, {
+    id: '01',
     text: 'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors.# = k',
-  };
-  var have2 = new Tree(def2);
-  have2.add(def21, def2, have2.traverseBF);
-  haveEl.appendChild(printTree(have2));
-
-  const def3 = {
+  }];
+  const def3 = [{
+    id: '0',
     text: 'G.edges &ni; e<br />&nbsp; graphs.&not;connected &ni; G - {e}',
-  };
-  const def31 = {
+  }, {
+    id: '01',
     text: 'e.nodes &ni; n<br />&nbsp; graphs.&not;connected &ni; G - {n}',
-  };
-  var have3 = new Tree(def3);
-  have3.add(def31, def3, have3.traverseBF);
-  haveEl.appendChild(printTree(have3));
-
-  const def4 = {
+  }];
+  const def4 = [{
+    id: '0',
     text: 'G.nodes &supe; S<br />&nbsp; graphs.&not;connected &ni; G - S',
-  };
-  const def41 = {
+  }, {
+    id: '01',
     text: '&nbsp; &nbsp; (G - S).components.# &gt; 1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H2<br />&nbsp; &nbsp; &nbsp; &and;',
-  };
-  var have4 = new Tree(def4);
-  have4.add(def41, def4, have4.traverseBF);
-  haveEl.appendChild(printTree(have4));
+  }];
+
+  const haveEl = document.getElementById('have');
+  haveEl.appendChild(printTree(arrayToTree(def1)));
+  haveEl.appendChild(printTree(arrayToTree(def2)));
+  haveEl.appendChild(printTree(arrayToTree(def3)));
+  haveEl.appendChild(printTree(arrayToTree(def4)));
 };
 
 const printWant = () => {
-  var wantEl = document.getElementById('want');
-
   const proof31Nodes = [{
     text: 'n1',
     radius: NODE_RADIUS,
@@ -68,7 +59,6 @@ const printWant = () => {
     x: 250,
     y: 50,
   }];
-
   const proof32Nodes = [{
     text: 'n1',
     radius: NODE_RADIUS,
@@ -90,7 +80,6 @@ const printWant = () => {
     x: 250,
     y: 75,
   }];
-
   const proof33Nodes = [{
     text: 'n1',
     radius: NODE_RADIUS,
@@ -112,7 +101,6 @@ const printWant = () => {
     x: 150,
     y: 150,
   }];
-
   const proof34Nodes = [{
     text: 'n1',
     radius: NODE_RADIUS,
@@ -144,29 +132,29 @@ const printWant = () => {
     x: 250,
     y: 75,
   }];
-
-  const root = {
+  const proof1 = [{
+    id: '0',
     text: 'graphs.regular.3 &ni; G<br />&nbsp; ...<br />&nbsp; &nbsp; G.connectivity.node = G.connectivity.edge',
-  };
-  const proof1 = {
+  }, {
+    id: '01',
     text: 'G.nodes &supe; S<br />&nbsp; S &ni; n<br />&nbsp; &nbsp; n.neighbors &ni; n1<br />&nbsp; &nbsp; &nbsp; H1 &ni; n1<br />&nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n.neighbors &ni; n3',
-  };
-  const proof21 = {
+  }, {
+    id: '011',
     text: 'H1 &ni; n3',
-  };
-  const proof22 = {
+  }, {
+    id: '012',
     text: 'H2 &ni; n3',
-  };
-  const proof23 = {
+  }, {
+    id: '013',
     text: 'H3 &ni; n3',
-  };
-  const proof24 = {
+  }, {
+    id: '014',
     text: 'S &ni; n3',
-  };
-  const proof25 = {
+  }, {
+    id: '015',
     text: '&or;<br /><p>&nbsp; S\'.# = S.#<br />&nbsp; &nbsp; &nbsp; G.connectivity.node = G.connectivity.edge',
-  };
-  const proof31 = {
+  }, {
+    id: '0111',
     text: '&nbsp; graphs.&not;connected &ni; G - {{n, n2}}',
     drawing: {
       nodes: proof31Nodes,
@@ -191,8 +179,8 @@ const printWant = () => {
         y: 50,
       }],
     },
-  };
-  const proof32 = {
+  }, {
+    id: '0121',
     text: '&nbsp; graphs.&not;connected &ni; G - {{n, n1}}',
     drawing: {
       nodes: proof32Nodes,
@@ -217,8 +205,8 @@ const printWant = () => {
         y: 50,
       }],
     },
-  };
-  const proof33 = {
+  }, {
+    id: '0131',
     text: '&nbsp; graphs.&not;connected &ni; G - {{n, n1}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n2}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n3}}<br />&nbsp; &or;',
     drawing: {
       nodes: proof33Nodes,
@@ -249,8 +237,8 @@ const printWant = () => {
         y: 200,
       }],
     },
-  };
-  const proof34 = {
+  }, {
+    id: '0141',
     text: '&nbsp; n3.neighbors &ni; n31<br />&nbsp; &nbsp; H1 &ni; n31<br />&nbsp; &nbsp; &nbsp; n3.neighbors &ni; n32<br />&nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n32<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n1}, {n3, n31}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n2}, {n3, n32}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &or;',
     drawing: {
       nodes: proof34Nodes,
@@ -277,19 +265,10 @@ const printWant = () => {
         y: 50,
       }],
     },
-  };
-  var want = new Tree(root);
-  want.add(proof1, root, want.traverseBF);
-  want.add(proof21, proof1, want.traverseBF);
-  want.add(proof22, proof1, want.traverseBF);
-  want.add(proof23, proof1, want.traverseBF);
-  want.add(proof24, proof1, want.traverseBF);
-  want.add(proof25, proof1, want.traverseBF);
-  want.add(proof31, proof21, want.traverseBF);
-  want.add(proof32, proof22, want.traverseBF);
-  want.add(proof33, proof23, want.traverseBF);
-  want.add(proof34, proof24, want.traverseBF);
-  wantEl.appendChild(printTree(want, message => {
+  }];
+
+  const wantEl = document.getElementById('want');
+  wantEl.appendChild(printTree(arrayToTree(proof1), message => {
     document.getElementById('screen').contentWindow.postMessage(message, '*');
   }));
 };
