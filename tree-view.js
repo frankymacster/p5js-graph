@@ -27,7 +27,7 @@ const printTree = (tree, cardBodyDataClickCb) => {
       }
 
       cardBodyDataClickCb(currentTree.data.drawing);
-    });
+    }, true);
 
     if (currentTree.parent) {
       visited.push({

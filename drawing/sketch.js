@@ -16,6 +16,10 @@ function draw() {
 window.addEventListener('message', e => {
   graphDrawing = new GraphDrawing(e.data.nodes, e.data.edges);
 
+  if (!e.data.sets) {
+    return;
+  }
+
   for (let i = 0; i < e.data.sets.length; i++) {
     graphDrawing.addSet(e.data.sets[i]);
   }

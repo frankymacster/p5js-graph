@@ -30,29 +30,35 @@ class GraphDrawing {
   }
 
   draw() {
-    stroke('red');
-    strokeWeight(4);
-    for (let i = 0; i < this.edges.length; i++) {
-      line(this.edges[i][0].x, this.edges[i][0].y, this.edges[i][1].x, this.edges[i][1].y);
+    if (this.edges) {
+      stroke('red');
+      strokeWeight(4);
+      for (let i = 0; i < this.edges.length; i++) {
+        line(this.edges[i][0].x, this.edges[i][0].y, this.edges[i][1].x, this.edges[i][1].y);
+      }
+      strokeWeight(0);
     }
-    strokeWeight(0);
 
-    for (let i = 0; i < this.sets.length; i++) {
-      fill(this.sets[i].color);
-      for (let j = 0; j < this.sets[i].nodes.length; j++) {
-        ellipse(this.sets[i].nodes[j].x, this.sets[i].nodes[j].y, NODE_RADIUS * 1.5, NODE_RADIUS * 1.5);
+    if (this.sets) {
+      for (let i = 0; i < this.sets.length; i++) {
+        fill(this.sets[i].color);
+        for (let j = 0; j < this.sets[i].nodes.length; j++) {
+          ellipse(this.sets[i].nodes[j].x, this.sets[i].nodes[j].y, NODE_RADIUS * 1.5, NODE_RADIUS * 1.5);
+        }
       }
     }
 
-    fill(255, 204, 0);
-    for (let i = 0; i < this.nodes.length; i++) {
-      ellipse(this.nodes[i].x, this.nodes[i].y, NODE_RADIUS, NODE_RADIUS);
-    }
+    if (this.nodes) {
+      fill(255, 204, 0);
+      for (let i = 0; i < this.nodes.length; i++) {
+        ellipse(this.nodes[i].x, this.nodes[i].y, NODE_RADIUS, NODE_RADIUS);
+      }
 
-    fill('white');
-    textSize(TEXT_SIZE);
-    for (let i = 0; i < this.nodes.length; i++) {
-      text(this.nodes[i].text, this.nodes[i].x - TEXT_SIZE / 4, this.nodes[i].y + TEXT_SIZE / 4);
+      fill('white');
+      textSize(TEXT_SIZE);
+      for (let i = 0; i < this.nodes.length; i++) {
+        text(this.nodes[i].text, this.nodes[i].x - TEXT_SIZE / 4, this.nodes[i].y + TEXT_SIZE / 4);
+      }
     }
 
     // fill('white');

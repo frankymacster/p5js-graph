@@ -39,90 +39,120 @@ const getProof = () => {
   }, {
     id: '11',
     text: 'G.nodes &ni; n',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+      ],
+    },
   }, {
     id: '111',
     text: 'n.neighbors &ni; n1<br />&nbsp; n.neighbors &ni; n2<br />&nbsp; &nbsp; n.neighbors &ni; n3',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+      ],
+    },
   }, {
     id: '1111',
     text: 'H2 &ni; n2<br />&nbsp; H1 &ni; n1',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+        ],
+      }],
+    },
   }, {
     id: '11111',
     text: 'H1 &ni; n3',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+          findByText(nodes, 'n3'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+        ],
+      }],
+    },
   }, {
     id: '11112',
     text: 'H2 &ni; n3',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+          findByText(nodes, 'n3'),
+        ],
+      }],
+    },
   }, {
     id: '11113',
     text: 'H3 &ni; n3',
-  }, {
-    id: '11114',
-    text: 'S &ni; n3',
-  }, {
-    id: '11115',
-    text: '&or;<br /><p>&nbsp; S\'.# = S.#<br />&nbsp; &nbsp; &nbsp; G.connectivity.node = G.connectivity.edge',
-  }, {
-    id: '111111',
-    text: '&nbsp; graphs.&not;connected &ni; G - {{n, n2}}',
-    drawing: {
-      nodes: [
-        findByText(nodes, 'n'),
-        findByText(nodes, 'n1'),
-        findByText(nodes, 'n2'),
-        findByText(nodes, 'n3'),
-      ],
-
-      edges: [
-        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
-        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
-        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
-      ],
-
-      sets: [{
-        text: 'H1',
-        nodes: [
-          findByText(nodes, 'n1'),
-          findByText(nodes, 'n3'),
-        ],
-      }, {
-        text: 'H2',
-        nodes: [
-          findByText(nodes, 'n2'),
-        ],
-      }],
-    },
-  }, {
-    id: '111121',
-    text: '&nbsp; graphs.&not;connected &ni; G - {{n, n1}}',
-    drawing: {
-      nodes: [
-        findByText(nodes, 'n'),
-        findByText(nodes, 'n1'),
-        findByText(nodes, 'n2'),
-        findByText(nodes, 'n3'),
-      ],
-
-      edges: [
-        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
-        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
-        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
-      ],
-
-      sets: [{
-        text: 'H1',
-        nodes: [
-          findByText(nodes, 'n1'),
-        ],
-      }, {
-        text: 'H2',
-        nodes: [
-          findByText(nodes, 'n2'),
-          findByText(nodes, 'n3'),
-        ],
-      }],
-    },
-  }, {
-    id: '111131',
-    text: '&nbsp; graphs.&not;connected &ni; G - {{n, n1}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n2}}<br />&nbsp; graphs.&not;connected &ni; G - {{n, n3}}<br />&nbsp; &or;',
     drawing: {
       nodes: [
         findByText(nodes, 'n'),
@@ -155,8 +185,197 @@ const getProof = () => {
       }],
     },
   }, {
+    id: '11114',
+    text: 'S &ni; n3',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+        ],
+      }],
+    },
+  }, {
+    id: '11115',
+    text: '&or;<br /><p>&nbsp; S\'.# = S.#<br />&nbsp; &nbsp; &nbsp; G.connectivity.node = G.connectivity.edge',
+  }, {
+    id: '111111',
+    text: 'graphs.&not;connected &ni; G - {{n, n2}}',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+          findByText(nodes, 'n3'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+        ],
+      }],
+    },
+  }, {
+    id: '111121',
+    text: 'graphs.&not;connected &ni; G - {{n, n1}}',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+          findByText(nodes, 'n3'),
+        ],
+      }],
+    },
+  }, {
+    id: '111131',
+    text: 'graphs.&not;connected &ni; G - {{n, n1}}',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+        ],
+      }, {
+        text: 'H3',
+        nodes: [
+          findByText(nodes, 'n3'),
+        ],
+      }],
+    },
+  }, {
+    id: '111132',
+    text: 'graphs.&not;connected &ni; G - {{n, n2}}',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+        ],
+      }, {
+        text: 'H3',
+        nodes: [
+          findByText(nodes, 'n3'),
+        ],
+      }],
+    },
+  }, {
+    id: '111133',
+    text: 'graphs.&not;connected &ni; G - {{n, n3}}',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+        ],
+      }, {
+        text: 'H3',
+        nodes: [
+          findByText(nodes, 'n3'),
+        ],
+      }],
+    },
+  }, {
     id: '111141',
-    text: '&nbsp; n3.neighbors &ni; n31<br />&nbsp; &nbsp; H1 &ni; n31<br />&nbsp; &nbsp; &nbsp; n3.neighbors &ni; n32<br />&nbsp; &nbsp; &nbsp; &nbsp; H2 &ni; n32<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n1}, {n3, n31}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; graphs.&not;connected &ni; G - {{n, n2}, {n3, n32}}<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &or;',
+    text: 'n3.neighbors &ni; n31<br />&nbsp; n3.neighbors &ni; n32',
     drawing: {
       nodes: [
         findByText(nodes, 'n'),
@@ -173,6 +392,105 @@ const getProof = () => {
         [findByText(nodes, 'n'), findByText(nodes, 'n3')],
         [findByText(nodes, 'n3'), findByText(nodes, 'n31')],
         [findByText(nodes, 'n3'), findByText(nodes, 'n32')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+        ],
+      }],
+    },
+  }, {
+    id: '1111411',
+    text: 'H1 &ni; n31<br />&nbsp; H2 &ni; n32',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+        findByText(nodes, 'n31'),
+        findByText(nodes, 'n32'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+        [findByText(nodes, 'n3'), findByText(nodes, 'n31')],
+        [findByText(nodes, 'n3'), findByText(nodes, 'n32')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+          findByText(nodes, 'n31'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+          findByText(nodes, 'n32'),
+        ],
+      }],
+    },
+  }, {
+    id: '11114111',
+    text: 'graphs.&not;connected &ni; G - {{n, n1}, {n, n31}}',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+        findByText(nodes, 'n31'),
+        findByText(nodes, 'n32'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n2')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+        [findByText(nodes, 'n3'), findByText(nodes, 'n32')],
+      ],
+
+      sets: [{
+        text: 'H1',
+        nodes: [
+          findByText(nodes, 'n1'),
+          findByText(nodes, 'n31'),
+        ],
+      }, {
+        text: 'H2',
+        nodes: [
+          findByText(nodes, 'n2'),
+          findByText(nodes, 'n32'),
+        ],
+      }],
+    },
+  }, {
+    id: '11114111',
+    text: 'graphs.&not;connected &ni; G - {{n, n2}, {n, n32}}',
+    drawing: {
+      nodes: [
+        findByText(nodes, 'n'),
+        findByText(nodes, 'n1'),
+        findByText(nodes, 'n2'),
+        findByText(nodes, 'n3'),
+        findByText(nodes, 'n31'),
+        findByText(nodes, 'n32'),
+      ],
+
+      edges: [
+        [findByText(nodes, 'n'), findByText(nodes, 'n1')],
+        [findByText(nodes, 'n'), findByText(nodes, 'n3')],
+        [findByText(nodes, 'n3'), findByText(nodes, 'n31')],
       ],
 
       sets: [{
