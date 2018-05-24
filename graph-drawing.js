@@ -2,6 +2,10 @@
 // INPUTS
 // nodes array
 // edges array
+const NODE_RADIUS = 30;
+const TEXT_SIZE = 16;
+const SET_WIDTH = 3 * NODE_RADIUS;
+const SET_HEIGHT = 5 * NODE_RADIUS;
 
 class GraphDrawing {
   constructor(nodes, edges) {
@@ -24,11 +28,10 @@ class GraphDrawing {
     strokeWeight(0);
     fill(255, 204, 0);
     for (var i = 0; i < this.nodes.length; i++) {
-      ellipse(this.nodes[i].x, this.nodes[i].y, this.nodes[i].radius, this.nodes[i].radius);
+      ellipse(this.nodes[i].x, this.nodes[i].y, NODE_RADIUS, NODE_RADIUS);
     }
 
     fill('white');
-    var TEXT_SIZE = 16;
     textSize(TEXT_SIZE);
     for (var i = 0; i < this.nodes.length; i++) {
       text(this.nodes[i].text, this.nodes[i].x - TEXT_SIZE / 4, this.nodes[i].y + TEXT_SIZE / 4);
@@ -36,7 +39,7 @@ class GraphDrawing {
 
     fill('blue');
     for (var i = 0; i < this.sets.length; i++) {
-      ellipse(this.sets[i].x, this.sets[i].y, this.sets[i].w, this.sets[i].h);
+      ellipse(this.sets[i].x, this.sets[i].y, SET_WIDTH, SET_HEIGHT);
     }
 
     fill('white');
