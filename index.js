@@ -6,7 +6,7 @@ const main = () => {
   });
 
   const wantEl = document.getElementById('want');
-  wantEl.appendChild(printTree(arrayToTree(getProof()), message => {
+  wantEl.appendChild(printTree(arrayToTree(makeDisplayableProof(getProof())), message => {
     document.getElementById('screen').contentWindow.postMessage(message, '*');
   }));
 };
