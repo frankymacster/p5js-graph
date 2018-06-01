@@ -5,28 +5,29 @@
 const NODE_RADIUS = 30;
 const TEXT_SIZE = 16;
 
-// https://stackoverflow.com/questions/1484506/random-color-generator
-const getRandomColor = () => {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+const dottedLine = (x1, y1, x2, y2, amount, radius) => {
+  let distX = x2 - x1;
+  let distY = y2 - y1;
+  for (let i = 0; i < amount; i++) {
+    ellipse(x1 + i * distX / amount, y1 + i * distY / amount, radius, radius);
   }
-
-  return color;
-}
+};
 
 class GraphDrawing {
   constructor(nodes, edges) {
     this.nodes = nodes;
     this.edges = edges;
     this.sets = [];
+    this.paths = [];
   }
 
   addSet(set) {
-    set.color = getRandomColor();
     this.sets.push(set);
+  }
+
+  addPath(path) {
+    path.color = getRandomColor();
+    this.paths.push(path);
   }
 
   draw() {
@@ -37,6 +38,23 @@ class GraphDrawing {
         line(this.edges[i][0].x, this.edges[i][0].y, this.edges[i][1].x, this.edges[i][1].y);
       }
       strokeWeight(0);
+    }
+
+    if (this.paths) {
+      for (let i = this.paths.length - 1; i >= 0; i--) {
+        fill(this.paths[i].color);
+        let amount;
+        let radius;
+        if (this.paths.find((p, j) => p[0].text === this.paths[i][0].text && p[1].text === this.paths[i][1].text && j !== i) ||
+          this.paths.find((p, j) => p[0].text === this.paths[i][1].text && p[1].text === this.paths[i][0].text && j !== i)) {
+          amount = 3 * (this.paths.length - (i - 1));
+          radius = 6 + i * 4;
+        } else {
+          amount = 3;
+          radius = 6;
+        }
+        dottedLine(this.paths[i][0].x, this.paths[i][0].y, this.paths[i][1].x, this.paths[i][1].y, amount, radius);
+      }
     }
 
     if (this.sets) {

@@ -1,11 +1,28 @@
 const getDefinitions = () => {
+  const nodes = [{
+    text: 'n',
+    x: getPos(1),
+    y: getPos(1),
+  }];
+
   const definitions = [
     [{
       id: '0',
-      text: 'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; n.neighbors',
+      text: `graphs ${HAS} G ${AND}${SO} G.nodes ${HAS} n`,
+      add: {
+        nodes: [
+          findByText(nodes, 'n'),
+        ],
+      },
     }, {
       id: '01',
-      text: 'graphs &ni; G<br />&nbsp; G.nodes &ni; n<br />&nbsp; &nbsp; G.edges.(&ni; n) &ni; e <br />&nbsp; &nbsp; &nbsp; n.neighbors = n.neighbors &cup; {e \ n}',
+      text: `n.neighbors`,
+    }, {
+      id: '011',
+      text: `G.edges.(${HAS} n) ${HAS} e`,
+    }, {
+      id: '0111',
+      text: `n.neighbors = n.neighbors ${UNION} {e \\ n}`,
     }], [{
       id: '0',
       text: 'graphs.regular.k &ni; G',
@@ -24,6 +41,15 @@ const getDefinitions = () => {
     }, {
       id: '01',
       text: '&nbsp; &nbsp; (G - S).components.# &gt; 1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H1<br />&nbsp; &nbsp; &nbsp; (G - S).components &ni; H2<br />&nbsp; &nbsp; &nbsp; &and;',
+    }], [{
+      id: '0',
+      text: `graphs.tree ${HAS} G`,
+    }, {
+      id: '01',
+      text: `graphs.connected ${HAS} G`,
+    }, {
+      id: '011',
+      text: `graphs.${NOT}cyclic ${HAS} G`,
     }],
   ];
 

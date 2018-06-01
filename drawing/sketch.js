@@ -23,4 +23,8 @@ window.addEventListener('message', e => {
   for (let i = 0; i < e.data.sets.length; i++) {
     graphDrawing.addSet(e.data.sets[i]);
   }
+
+  for (let i = 0; i < e.data.paths.length; i++) {
+    graphDrawing.addPath(e.data.paths[i]);
+  }
 });

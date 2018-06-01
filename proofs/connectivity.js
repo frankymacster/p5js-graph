@@ -65,11 +65,13 @@ const getProof = () => {
         nodes: [
           findByText(nodes, 'n1'),
         ],
+        color: getRandomColor(),
       }, {
         text: 'H2',
         nodes: [
           findByText(nodes, 'n2'),
         ],
+        color: getRandomColor(),
       }],
     },
   }, {
@@ -81,6 +83,7 @@ const getProof = () => {
         nodes: [
           findByText(nodes, 'n3'),
         ],
+        color: getRandomColor(),
       }],
     },
   }, {
@@ -92,6 +95,7 @@ const getProof = () => {
         nodes: [
           findByText(nodes, 'n3'),
         ],
+        color: getRandomColor(),
       }],
     },
   }, {
@@ -103,6 +107,7 @@ const getProof = () => {
         nodes: [
           findByText(nodes, 'n3'),
         ],
+        color: getRandomColor(),
       }],
     },
   }, {
@@ -175,11 +180,13 @@ const getProof = () => {
         nodes: [
           findByText(nodes, 'n31'),
         ],
+        color: getRandomColor(),
       }, {
         text: 'H2',
         nodes: [
           findByText(nodes, 'n32'),
         ],
+        color: getRandomColor(),
       }],
     },
   }, {

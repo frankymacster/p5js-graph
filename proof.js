@@ -16,12 +16,14 @@ const makeDisplayableProof = proofs => {
       nodes: [],
       edges: [],
       sets: [],
+      paths: [],
     };
     // keep in object text of elements to remove
     let remove = {
       nodes: [],
       edges: [],
       sets: [],
+      paths: [],
     };
     let drawingId = p.id;
     while (drawingId) {
@@ -35,6 +37,7 @@ const makeDisplayableProof = proofs => {
               if (prop === 'sets') {
                 let set = findByText(displayableProof.drawing[prop], s.text) || {
                   text: s.text,
+                  color: s.color,
                 };
 
                 if (!set.nodes) {
@@ -68,7 +71,7 @@ const makeDisplayableProof = proofs => {
 
     // remove elements from displayableProof
     for (let prop in remove) {
-      if (prop === 'edges') {
+      if (prop === 'edges' || prop === 'paths') {
         remove[prop].forEach(r => {
           let idx = displayableProof.drawing[prop].findIndex(e => {
             return e[0].text === r[0].text &&
